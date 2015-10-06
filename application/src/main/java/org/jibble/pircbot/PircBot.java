@@ -1000,6 +1000,8 @@ public abstract class PircBot implements ReplyConstants {
 
     StringTokenizer tokenizer = new StringTokenizer(line);
     String senderInfo = tokenizer.nextToken();
+    if (senderInfo.startsWith("@"))
+      senderInfo = tokenizer.nextToken();
     String command = tokenizer.nextToken();
     String target = null;
 

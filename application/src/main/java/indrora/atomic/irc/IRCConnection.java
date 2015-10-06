@@ -41,7 +41,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jibble.pircbot.NickAlreadyInUseException;
@@ -64,6 +66,10 @@ public class IRCConnection extends PircBot {
   private final Server server;
   private ArrayList<String> autojoinChannels;
   private Pattern mNickMatch;
+
+  private final Pattern isupportSpecial = Pattern.compile("\\\\x(\\p{XDigit}{2})");
+  private final HashMap<String,String> isupport = new HashMap<>();
+  private String prefixes = "+%@&~";
 
   private boolean ignoreMOTD = true;
   private boolean debugTraffic = false;
@@ -1140,6 +1146,28 @@ public class IRCConnection extends PircBot {
       onRegister();
       return;
     }
+    if( code == 5 ) {
+      // Parse isupport (https://tools.ietf.org/html/draft-brocklesby-irc-isupport-03)
+      String[] options = response.substring(response.indexOf(' ') + 1).split(" "); // Strip nick and split
+      for( String option : options ) {
+        String[] spl = option.split("=", 2);
+        StringBuffer value = new StringBuffer();
+
+        Matcher m = isupportSpecial.matcher(spl[1]);
+        while( m.find() ) {
+          int codePoint = Integer.parseInt(m.group(1), 16);
+          m.appendReplacement(value, String.valueOf((char) codePoint));
+        }
+        m.appendTail(value);
+
+        isupport.put(spl[0], value.toString());
+
+        if( "PREFIX".equalsIgnoreCase(spl[0]) ) {
+          prefixes = value.substring(value.indexOf(")") + 1);
+        }
+      }
+
+    }
     if( (code == 372 || code == 375) && ignoreMOTD ) {
       return;
     }
@@ -1277,12 +1305,9 @@ public class IRCConnection extends PircBot {
 
     /* Sort the users by their modes, then their nicknames */
     Arrays.sort(users, new Comparator<String>() {
-      /* Mode list (order: lowest to highest) */
-      public static final String modes = "+%@&~";
-
       public int compare(String s1, String s2) {
-        int i1 = modes.indexOf(s1.charAt(0));
-        int i2 = modes.indexOf(s2.charAt(0));
+        int i1 = prefixes.indexOf(s1.charAt(0));
+        int i2 = prefixes.indexOf(s2.charAt(0));
 
         if( i1 == i2 ) {
           /* Resort to a case-insensitive comparison */
