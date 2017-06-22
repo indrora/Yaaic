@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <color name="default_led_color">#FFFFFFFF</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--  the default value of default_nickname will be mangled on first run -->
+    <!--  It also gets force-set if there is no "valid" name, so we're 100% OK -->
+    <string name="default_default_username">atomic</string>
+
+    <string name="default_default_realname">Atomic User</string>
+
+</resources>

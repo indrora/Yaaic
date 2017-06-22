@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Help topics. These are fairly common. -->
+
+    <string name="helptopic_titlepage_title">Добро пожаловать в Atomic!</string>
+
+    <string name="helptopic_introduction_title">Введение</string>
+
+    <string name="helptopic_colorschemes_title">Цветовые схемы</string>
+
+
+    <string name="helptopic_conversation_title">Каналы и серверы</string>
+</resources>
