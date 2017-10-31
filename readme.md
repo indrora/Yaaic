@@ -1,4 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/indrora/Atomic.png?label=ready&title=Ready)](https://waffle.io/indrora/Atomic) [![Build Status](https://travis-ci.org/indrora/Atomic.svg?branch=master)](https://travis-ci.org/indrora/Atomic) [![Crowdin](https://d322cqt584bo4o.cloudfront.net/atomic/localized.png)](https://crowdin.net/project/atomic)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Findrora%2FAtomic.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Findrora%2FAtomic?ref=badge_shield)
 
  [![F-Droid](https://f-droid.org/wiki/images/0/0f/F-Droid-button_smaller.png)](https://f-droid.org/repository/browse/?fdid=indrora.atomic) (Coming soon to the Android and Amazon app markets!)
 
@@ -102,3 +103,6 @@ License (GPLv3)
     You should have received a copy of the GNU General Public License
     along with this software. If not, see http://www.gnu.org/licenses/
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Findrora%2FAtomic.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Findrora%2FAtomic?ref=badge_large)
